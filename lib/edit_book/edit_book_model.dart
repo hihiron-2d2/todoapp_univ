@@ -29,7 +29,7 @@ class EditBookModel extends ChangeNotifier{
     return title != null || author != null;
   }
 
-  Future update(BuildContext context) async {
+  Future update() async {
     title = titleController.text;
     author = authorController.text;
 
@@ -38,8 +38,6 @@ class EditBookModel extends ChangeNotifier{
       'title': title,
       'author': author,
     });
-    Navigator.of(context).pop(title);
-    notifyListeners();
   }
 }
 

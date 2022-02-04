@@ -4,8 +4,9 @@ import 'package:todoapp_univ/domain/book.dart';
 import 'package:todoapp_univ/edit_book/edit_book_model.dart';
 
 class EditBookPage extends StatelessWidget {
-  const EditBookPage(this.book);
   final Book book;
+  // ignore: use_key_in_widget_constructors
+  const EditBookPage(this.book);
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +48,20 @@ class EditBookPage extends StatelessWidget {
                 ElevatedButton(
                     onPressed: model.isUpdated()
                         ? ()  async {
-                      ///ここのコード分からん
-                  //追加の処理
-                  try {
-                    await model.update(context);
-                  } catch (e){
-                    final snackBar = SnackBar(
-                      backgroundColor: Colors.amber,
-                      content: Text(e.toString()),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                } : null, ///なんでここにnullがつくんだ？
-                    child: const Text('更新する')),
+                        //追加の処理
+                         try {
+                           await model.update();
+                             Navigator.of(context).pop(model.title);
+                         } catch (e){
+                           final snackBar = SnackBar(
+                             backgroundColor: Colors.amber,
+                             content: Text(e.toString()),
+                         );
+                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      } : null, //なんでここにnullがつくんだ？
+                    child: const Text('更新する'),
+                ),
               ],),
             );
           }),
